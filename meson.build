@@ -74,6 +74,7 @@ subdir('bootloader/')
 
 subdir('epicardium/')
 subdir('pycardium/')
+subdir('grufcardium/')
 
 subdir('hw-tests/')
 
