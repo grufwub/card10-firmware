@@ -4,8 +4,7 @@
 
 #include "max32665.h"
 
-#include <stdio.h>
-
+#include "core.h"
 #include "test.h"
 
 /* Defined in linker script */
@@ -20,5 +19,7 @@ int main(void)
 
 	test_vibrate();
 
-	g_exit(0, "exit success!");
+	test_display(50, "resetting");
+
+	epic_system_reset();
 }

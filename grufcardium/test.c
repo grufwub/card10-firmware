@@ -1,37 +1,43 @@
 #include "test.h"
 
-void test_display(uint16_t brightness, const char *string);
+void test_display(uint16_t brightness, const char *string)
 {
 	int result;
 
-	# Open display, return if failed
+	// Open display, return if failed
 	result = epic_disp_open();
 	if (result < 0) g_exit(result, "epic_disp_open");
 
-	# Set defined backlight level
-	epic_disp_backlight(brightness);
+	// Set defined backlight level
+	result = epic_disp_backlight(brightness);
 	if (result < 0) g_exit(result, "epic_disp_backlight");
 
-	# Write string to display buffer
-	result = epic_disp_print(20, 20, string, 11111, 00000);
+	// Clear display
+	result = epic_disp_clear(00000);
+	if (result < 0) g_exit(result, "epic_disp_clear");
+
+	// Write string to display buffer
+	result = epic_disp_print(0, 20, string, 11111, 00000);
 	if (result < 0) g_exit(result, "epic_disp_print");
 
-	# Update display
+	// Update display
 	epic_disp_update();
 	if (result < 0) g_exit(result, "epic_disp_update");
 
-	# Sleep for 10s
+	// Sleep for 10s
 	g_sleep_s(10);
 
-	# Close display and return value
+	// Close display and return value
 	result = epic_disp_close();
 	if (result < 0) g_exit(result, "epic_disp_close");
 }
 
 void test_vibrate()
 {
-	# Test vibrate motor
-	epic_vibra_vibrate(5 * 1000);
+	// Test vibrate motor
+	epic_vibra_set(1);
+	g_sleep_s(5);
+	epic_vibra_set(0);
 }
 
 void test_buttons()

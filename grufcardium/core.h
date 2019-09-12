@@ -4,8 +4,9 @@
 #include <string.h>
 
 #include "epicardium.h"
+#include "mxc_delay.h"
 
-void g_exit(const char *string);
+void g_exit(int ret_code, const char *string);
 
 void g_sleep_us(int us);
 void g_sleep_ms(int ms);

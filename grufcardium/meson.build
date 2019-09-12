@@ -1,6 +1,7 @@
 name = 'grufcardium'
 
 src = files(
+  'core.c',
   'test.c'
 )
 
@@ -8,6 +9,7 @@ elf = executable(
   name + '.elf',
   'main.c',
   src,
+  version_hdr,
   dependencies: [max32665_startup_core1, periphdriver, api_caller],
   link_whole: [max32665_startup_core1_lib, api_caller_lib],
   link_args: [
